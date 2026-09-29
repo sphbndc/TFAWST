@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/site.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/forms.css') ?>">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>

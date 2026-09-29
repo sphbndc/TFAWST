@@ -11,7 +11,7 @@ abstract class BaseController extends Controller
 {
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
-        $this->helpers = ['url'];
+        $this->helpers = ['url', 'form'];
         parent::initController($request, $response, $logger);
     }
 }

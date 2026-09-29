@@ -10,4 +10,5 @@ class CustomerModel extends Model
     protected $primaryKey = 'id';
     protected $returnType = 'array';
     protected $allowedFields = ['full_name', 'email', 'phone', 'created_at'];
+    public $useTimestamps = false;
 }
