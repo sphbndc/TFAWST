@@ -1,3 +1,4 @@
+<?php $loggedIn = session()->get('isLoggedIn') === true; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header"><div class="shell header-inner">
         <a class="brand" href="<?= site_url('/') ?>" aria-label="LabDesk POS home"><span class="brand-mark" aria-hidden="true">LD</span><span class="brand-copy"><strong>LabDesk</strong><small>POS</small></span></a>
-        <nav class="main-nav" aria-label="Main navigation"><a class="<?= ($active ?? '') === 'home' ? 'is-active' : '' ?>" href="<?= site_url('/') ?>">Home</a><a class="<?= ($active ?? '') === 'about' ? 'is-active' : '' ?>" href="<?= site_url('about') ?>">About</a><a class="<?= ($active ?? '') === 'customers' ? 'is-active' : '' ?>" href="<?= site_url('customers') ?>">Customers</a><a class="<?= ($active ?? '') === 'users' ? 'is-active' : '' ?>" href="<?= site_url('users') ?>">Users</a></nav>
-        <a class="header-action" href="<?= site_url('about') ?>">About LabDesk <span aria-hidden="true">&#8594;</span></a>
+        <nav class="main-nav" aria-label="Main navigation"><a class="<?= ($active ?? '') === 'home' ? 'is-active' : '' ?>" href="<?= site_url('/') ?>">Home</a><a class="<?= ($active ?? '') === 'about' ? 'is-active' : '' ?>" href="<?= site_url('about') ?>">About</a><?php if ($loggedIn): ?><a class="<?= ($active ?? '') === 'customers' ? 'is-active' : '' ?>" href="<?= site_url('customers') ?>">Customers</a><a class="<?= ($active ?? '') === 'users' ? 'is-active' : '' ?>" href="<?= site_url('users') ?>">Users</a><?php endif; ?></nav>
+        <?php if ($loggedIn): ?><a class="header-action" href="<?= site_url('logout') ?>">Logout <span aria-hidden="true">&#8594;</span></a><?php else: ?><a class="header-action" href="<?= site_url('login') ?>">Staff login <span aria-hidden="true">&#8594;</span></a><?php endif; ?>
     </div></header>
     <main id="main-content">

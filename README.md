@@ -1,17 +1,19 @@
 # LabDesk POS
 
-LabDesk POS is a CodeIgniter 4 account directory with database-backed records, validated forms, editing workflows, and user profile images.
+LabDesk POS is a CodeIgniter 4 account directory with database records, validated forms, user avatars, sessions, and login protection.
 
 ## Pages and workflows
 
 - `/` — landing page
 - `/about` — about page
-- `/customers` — customer records
-- `/customers/new` — create a customer
-- `/customers/edit/{id}` — edit a customer
-- `/users` — user records with profile images
-- `/users/new` — create a user
-- `/users/edit/{id}` — edit a user and upload an avatar
+- `/login` — staff login
+- `/logout` — end the current session
+- `/customers` — protected customer records
+- `/customers/new` — protected customer creation form
+- `/customers/edit/{id}` — protected customer edit form
+- `/users` — protected user records
+- `/users/new` — protected user creation form
+- `/users/edit/{id}` — protected user edit form and avatar upload
 
 ## Local setup
 
@@ -27,8 +29,15 @@ composer install
 php spark serve
 ```
 
-Open `http://localhost:8080/` and test the account forms. Customer and user validation errors redisplay the submitted values. User avatars accept JPG or PNG files up to 2MB, create a 256px square JPEG copy, and save only the generated filename in the database.
+The sample login is:
+
+```text
+Username: amartinez
+Password: labdesk123
+```
+
+Customer and user account routes require a valid session. Passwords are stored as hashes and checked with `password_verify()`. User avatars accept JPG or PNG files up to 2MB, create a 256px square JPEG copy, and save only the generated filename in the database.
 
 ## Hosting
 
-Create or select the MySQL database in the hosting control panel, import `database/export.sql`, set the database values in `.env`, and upload the package contents into `htdocs`. The `public/uploads/avatars` directory must be writable by the server.
+Create or select the MySQL database in the hosting control panel, import `database/export.sql`, set the database values in `.env`, and upload the package contents into `htdocs`. The `public/uploads/avatars` directory must be present and writable by the server.

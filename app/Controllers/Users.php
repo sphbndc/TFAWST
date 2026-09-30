@@ -26,6 +26,8 @@ class Users extends BaseController
         $rules = [
             'username' => 'required|min_length[3]|max_length[50]|is_unique[users.username]',
             'full_name' => 'required|max_length[100]',
+            'password' => 'required|min_length[8]',
+            'password_confirm' => 'required|matches[password]',
         ];
 
         if (! $this->validate($rules)) {
@@ -35,6 +37,7 @@ class Users extends BaseController
         (new UserModel())->insert([
             'username' => trim((string) $this->request->getPost('username')),
             'full_name' => trim((string) $this->request->getPost('full_name')),
+            'password' => password_hash((string) $this->request->getPost('password'), PASSWORD_DEFAULT),
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
