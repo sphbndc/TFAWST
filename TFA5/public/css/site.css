@@ -77,7 +77,10 @@ footer { height: 63px; padding: 0 clamp(22px, 7vw, 104px); display: flex; align-
     .topbar { padding: 16px 20px; align-items: flex-start; flex-direction: column; gap: 18px; }
     .topbar nav { width: calc(100vw - 40px); max-width: calc(100vw - 40px); display: flex; justify-content: flex-start; gap: 22px; }
     nav a { flex: 0 0 auto; padding: 8px 0; font-size: 12px; white-space: nowrap; }
-    .hero { padding: 62px 22px 55px; grid-template-columns: 1fr; gap: 45px; }
+    .hero { padding: 62px 44px 55px 22px; grid-template-columns: minmax(0, 1fr); gap: 45px; }
+    .hero-copy, .hero-art { width: calc(100% - 44px); min-width: 0; }
+    .hero-art { width: calc(100% - 66px); }
+    .intro { width: 100%; max-width: 100%; }
     .hero h1 { font-size: clamp(44px, 12vw, 52px); }
     .hero-art { min-height: 315px; }
     .art-numbers strong { font-size: 105px; }
