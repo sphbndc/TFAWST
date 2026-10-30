@@ -9,9 +9,9 @@
 </section>
 <section class="table-section">
     <div class="table-caption"><span>STAFF DIRECTORY</span><span>ACCOUNT DETAILS</span></div>
-    <div class="table-scroll"><table><thead><tr><th>Username</th><th>Full name</th><th>Role</th></tr></thead><tbody>
+    <div class="table-scroll"><table><thead><tr><th>Username</th><th>Full name</th></tr></thead><tbody>
     @foreach ($users as $user)
-        <tr><td data-label="Username"><span class="username">{{ '@'.$user['username'] }}</span></td><td data-label="Full name"><span>{{ $user['full_name'] }}</span></td><td data-label="Role"><span class="role">{{ $user['role'] }}</span></td></tr>
+        <tr><td data-label="Username"><span class="username">{{ '@'.$user->username }}</span></td><td data-label="Full name"><span>{{ $user->full_name }}</span></td></tr>
     @endforeach
     </tbody></table></div>
 </section>

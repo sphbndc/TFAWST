@@ -1,26 +1,29 @@
 # Pointline POS
 
-A simple four-page Laravel POS foundation with customer and staff directories.
+A four-page Laravel directory for customers and staff. Customer and user records are stored in a database and displayed through Eloquent models.
 
 ## Requirements
 
-- PHP 8.3 or newer
+- PHP 8.3 or newer with the PDO driver for your database
 - Composer
+- MySQL or SQLite for local development
 
 ## Run locally
 
-1. Open a terminal in this folder.
-2. Run `composer install`.
-3. Copy `.env.example` to `.env` if `.env` does not exist.
-4. Run `php artisan key:generate`.
-5. Run `php artisan serve` and open the local URL shown in the terminal.
+1. Run `composer install` in this folder.
+2. Copy `.env.example` to `.env` and run `php artisan key:generate`.
+3. Configure the database in `.env`. For SQLite, set `DB_CONNECTION=sqlite` and create an empty `database/database.sqlite` file. For MySQL, set `DB_CONNECTION=mysql` and the `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` values.
+4. Run `php artisan migrate --seed`.
+5. Run `php artisan serve` and open the URL printed in the terminal.
 
-The site has Home, About, Customer Accounts, and User Accounts pages. The customer and staff records are PHP arrays in their controllers and are displayed with Blade loops. No database is needed to run the pages.
+The pages are `/`, `/about`, `/customers`, and `/users`. The migrations create the `customers` and `users` tables, and `DatabaseSeeder` adds five records to each. Running the seeder again does not duplicate those sample records.
 
-`database/export.sql` is included as a supplementary SQL export for the submission. It creates matching tables and sample rows, but the application does not read from those tables.
+## InfinityFree
 
-## Hosting
+1. Create an empty MySQL database in the InfinityFree control panel and note its exact host, database name, username, and password.
+2. In phpMyAdmin, select that database and import `database/export.sql` once. This is the hosting alternative to running `php artisan migrate --seed`; do not run both against the same database.
+3. Set the hosted `.env` to `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://pointlinepos.infinityfreeapp.com`, `DB_CONNECTION=mysql`, and your actual `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`. Keep the existing generated `APP_KEY`.
+4. Upload and extract the hosting ZIP into `/pointlinepos.infinityfreeapp.com/htdocs`, replacing the TFA5 files. Confirm that `app`, `bootstrap`, `public`, `resources`, `routes`, `storage`, and `vendor` are present. The root `index.php` and `.htaccess` are included.
+5. Check `/`, `/about`, `/customers`, and `/users` on the hosted domain. Customer and user pages should each show five records.
 
-Upload the prepared hosting package contents into the hosting `htdocs` directory. Keep `.env` private and set the hosting PHP version to 8.3 or newer. The hosted package uses file-based cache and sessions, so it does not need database credentials.
-
-This package targets the `htdocs` root and will replace same-named files there. Back up the current site first if you need to keep it.
+`database/export.sql` contains only the two tables and ten sample records. The application reads the database through Eloquent; it does not load the SQL file at runtime. Back up the current hosted files and database before replacing them if you need to keep their contents.

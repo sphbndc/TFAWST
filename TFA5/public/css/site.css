@@ -70,7 +70,6 @@ td:first-child { font-weight: 600; }
 td a { color: var(--red); }
 td a:hover { text-decoration: underline; }
 .username { color: var(--red); font: 12px var(--mono); }
-.role { display: inline-block; padding: 6px 9px; background: #e8e2d6; font-size: 11px; }
 footer { height: 63px; padding: 0 clamp(22px, 7vw, 104px); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); color: var(--muted); font: 9px var(--mono); letter-spacing: .08em; }
 
 @media (max-width: 720px) {
